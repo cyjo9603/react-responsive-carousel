@@ -769,6 +769,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                             <ReactSwipe
                                 tagName="ul"
                                 innerRef={this.setListRef}
+                                eventOptions={this.props.eventOptions}
                                 {...swiperProps}
                                 allowMouseEvents={this.props.emulateTouch}
                             >
