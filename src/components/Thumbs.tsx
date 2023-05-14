@@ -3,7 +3,7 @@ import klass from '../cssClasses';
 import { outerWidth } from '../dimensions';
 import CSSTranslate from '../CSSTranslate';
 // @ts-ignore
-import Swipe from 'react-easy-swipe';
+import ReactSwipe from '../Swipe';
 import getWindow from '../shims/window';
 
 const isKeyboardEvent = (e: React.MouseEvent | React.KeyboardEvent): e is React.KeyboardEvent =>
@@ -306,7 +306,7 @@ export default class Thumbs extends Component<Props, State> {
                         aria-label={this.props.labels.leftArrow}
                     />
                     {isSwipeable ? (
-                        <Swipe
+                        <ReactSwipe
                             tagName="ul"
                             className={klass.SLIDER(false, this.state.swiping)}
                             onSwipeLeft={this.slideLeft}
@@ -319,7 +319,7 @@ export default class Thumbs extends Component<Props, State> {
                             allowMouseEvents={this.props.emulateTouch}
                         >
                             {this.renderItems()}
-                        </Swipe>
+                        </ReactSwipe>
                     ) : (
                         <ul
                             className={klass.SLIDER(false, this.state.swiping)}

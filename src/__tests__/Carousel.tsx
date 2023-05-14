@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { shallow, mount, ReactWrapper } from 'enzyme';
 import renderer from 'react-test-renderer';
 import * as index from '../index';
-// @ts-ignore
-import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
+import ReactSwipe from '../components/Swipe';
+import { SwipeProps } from '../components/Swipe/types';
 import Carousel from '../components/Carousel';
 import Thumbs from '../components/Thumbs';
 import getDocument from '../shims/document';
@@ -707,7 +707,7 @@ describe('Slider', function() {
                 infiniteLoop: true,
             });
 
-            expect(component.find(Swipe).length).toBe(0);
+            expect(component.find(ReactSwipe).length).toBe(0);
         });
     });
 
@@ -1005,8 +1005,8 @@ describe('Slider', function() {
                     axis: 'vertical',
                 });
 
-                const swipeProps: ReactEasySwipeProps = component
-                    .find(Swipe)
+                const swipeProps: SwipeProps = component
+                    .find(ReactSwipe)
                     .first()
                     .props();
 
@@ -1022,8 +1022,8 @@ describe('Slider', function() {
                     verticalSwipe: 'natural',
                 });
 
-                const swipeProps: ReactEasySwipeProps = component
-                    .find(Swipe)
+                const swipeProps: SwipeProps = component
+                    .find(ReactSwipe)
                     .first()
                     .props();
 

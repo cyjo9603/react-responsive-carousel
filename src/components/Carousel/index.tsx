@@ -1,6 +1,4 @@
 import React, { Children } from 'react';
-// @ts-ignore
-import Swipe, { ReactEasySwipeProps } from 'react-easy-swipe';
 import klass from '../../cssClasses';
 import Thumbs from '../Thumbs';
 import getDocument from '../../shims/document';
@@ -13,6 +11,8 @@ import {
     slideStopSwipingHandler,
     fadeAnimationHandler,
 } from './animations';
+import ReactSwipe from '../Swipe';
+import { SwipeProps } from '../Swipe/types';
 
 export default class Carousel extends React.Component<CarouselProps, CarouselState> {
     private thumbsRef?: Thumbs;
@@ -726,11 +726,11 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         const firstClone = itemsClone.shift();
         const lastClone = itemsClone.pop();
 
-        let swiperProps: ReactEasySwipeProps = {
+        let swiperProps: SwipeProps = {
             className: klass.SLIDER(true, this.state.swiping),
-            onSwipeMove: this.onSwipeMove,
-            onSwipeStart: this.onSwipeStart,
-            onSwipeEnd: this.onSwipeEnd,
+            onSwipeMove: this.onSwipeMove as any,
+            onSwipeStart: this.onSwipeStart as any,
+            onSwipeEnd: this.onSwipeEnd as any,
             style: this.state.itemListStyle,
             tolerance: this.props.swipeScrollTolerance,
         };
@@ -766,7 +766,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                     {this.props.renderArrowPrev(this.onClickPrev, hasPrev, this.props.labels.leftArrow)}
                     <div className={klass.WRAPPER(true, this.props.axis)} style={containerStyles}>
                         {isSwipeable ? (
-                            <Swipe
+                            <ReactSwipe
                                 tagName="ul"
                                 innerRef={this.setListRef}
                                 {...swiperProps}
@@ -775,7 +775,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                                 {this.props.infiniteLoop && lastClone}
                                 {this.renderItems()}
                                 {this.props.infiniteLoop && firstClone}
-                            </Swipe>
+                            </ReactSwipe>
                         ) : (
                             <ul
                                 className={klass.SLIDER(true, this.state.swiping)}
