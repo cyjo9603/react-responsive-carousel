@@ -2,8 +2,7 @@ import React, { Component, Children } from 'react';
 import klass from '../cssClasses';
 import { outerWidth } from '../dimensions';
 import CSSTranslate from '../CSSTranslate';
-// @ts-ignore
-import ReactSwipe from '../Swipe';
+import ReactSwipe from './Swipe';
 import getWindow from '../shims/window';
 
 const isKeyboardEvent = (e: React.MouseEvent | React.KeyboardEvent): e is React.KeyboardEvent =>
